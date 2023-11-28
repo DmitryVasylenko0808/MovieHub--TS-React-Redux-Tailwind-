@@ -31,7 +31,7 @@ export default (env: EnvVariables): webpack.Configuration => {
             new MiniCssExtractPlugin({
                 filename: "[name].[contenthash].css"
             }),
-            new ForkTsCheckerWebpackPlugin()
+            isDev && new ForkTsCheckerWebpackPlugin()
         ].filter(Boolean),
 
         module: {
