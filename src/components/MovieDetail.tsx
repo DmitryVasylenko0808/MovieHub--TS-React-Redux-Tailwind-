@@ -20,7 +20,7 @@ const MovieDetail = () => {
   }
 
   return (
-    <div className="">
+    <div className="py-4">
       <div className="flex">
         <img
           src={`${MOVIES_IMAGES_URL}/${data?.poster_path}`}

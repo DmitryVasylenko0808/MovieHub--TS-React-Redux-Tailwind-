@@ -23,6 +23,7 @@ export type GetMoviesResponse = {
 };
 
 export type GetSearchedMoviesResponse = GetMoviesResponse;
+export type GetSimilarMoviesResponse = GetMoviesResponse;
 
 export type Genre = {
     id: number,

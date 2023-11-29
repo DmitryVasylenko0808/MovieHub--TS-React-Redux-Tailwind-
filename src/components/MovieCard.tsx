@@ -14,12 +14,10 @@ type MovieCardProps = {
 const MovieCard = ({ movie }: MovieCardProps) => {
   const genres = useAppSelector((state) => state.genres.data);
 
-  const genresNames = genres
-    .filter((g) => movie.genre_ids.includes(g.id))
-    .map((g) => g.name);
+  const genresMovie = genres.filter((g) => movie.genre_ids.includes(g.id));
 
   return (
-    <div className="w-[320px] h-[630px]">
+    <div className="min-w-[320px] max-w-[320px] h-[630px]">
       <Link className="block mb-3" to={`/${movie.id}`}>
         <img
           className="h-[480px] rounded-lg"
@@ -37,8 +35,10 @@ const MovieCard = ({ movie }: MovieCardProps) => {
         </button>
       </div>
       <div className="flex flex-wrap gap-3">
-        {genresNames.map((g) => (
-          <span className="px-3 bg-slate-200 rounded-lg">{g}</span>
+        {genresMovie.map((g, i) => (
+          <span className="px-3 bg-slate-200 rounded-lg" key={g.id}>
+            {g.name}
+          </span>
         ))}
       </div>
     </div>
