@@ -14,7 +14,7 @@ const SearchMovies = () => {
   return (
     <div className="flex justify-center">
       <div className="relative w-[560px] px-4 py-2 border-2 rounded-3xl flex items-center gap-x-3">
-        <Search width={30} height={30} stroke="#A3A3A3" />
+        <Search width={30} height={30} />
         <input
           className="outline-0 text-xl"
           aria-label="search"
