@@ -8,7 +8,7 @@ export type Movie = {
     overview: string,
     popularity: number,
     poster_path: string,
-    releaseDate: string,
+    release_date: string,
     title: string,
     video: boolean,
     vote_average: number,
@@ -21,6 +21,8 @@ export type GetMoviesResponse = {
     total_results: number,
     total_pages: number,
 };
+
+export type GetSearchedMovies = GetMoviesResponse;
 
 export type Genre = {
     id: number,

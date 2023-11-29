@@ -1,18 +1,12 @@
 import React, { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import {
-  useGetMovieGenresQuery,
-  useGetPopularMoviesQuery,
-} from "../redux/services/api";
+import { useGetPopularMoviesQuery } from "../redux/services/api";
 import MoviesList from "./MoviesList";
 
 import ChevronLeft from "../assets/icons/chevron-left.svg";
 import ChevronRight from "../assets/icons/chevron-right.svg";
-import { useAppDispatch } from "../redux/hooks";
-import { setGenres } from "../redux/slices/genresSlice";
 
 const MoviesContainer = () => {
-  const dispatch = useAppDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const page = searchParams.get("page") ?? "1";
@@ -20,18 +14,10 @@ const MoviesContainer = () => {
   const { data, isLoading, isFetching, isError } = useGetPopularMoviesQuery(
     parseFloat(page)
   );
-  const genres = useGetMovieGenresQuery();
 
   useEffect(() => {
     setSearchParams({ page });
   }, []);
-
-  useEffect(() => {
-    if (genres.data) {
-      console.log(genres.data.genres);
-      dispatch(setGenres(genres.data.genres));
-    }
-  }, [genres.data]);
 
   const isLastPage = parseFloat(page) === data?.total_pages;
   const isFirstPage = parseFloat(page) === 1;
