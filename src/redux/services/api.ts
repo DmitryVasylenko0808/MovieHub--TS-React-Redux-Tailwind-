@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 import { BASE_URL, TOKEN } from "../../constants";
-import { GetMoviesResponse } from "./types";
+import { GetMovieGenresResponse, GetMoviesResponse } from "./types";
 
 export const api = createApi({
     reducerPath: "api",
@@ -12,11 +12,15 @@ export const api = createApi({
     }),
     endpoints: builder => ({
         getPopularMovies: builder.query<GetMoviesResponse, number>({
-            query: page => `/popular?page=${page}`
+            query: page => `/movie/popular?page=${page}`
+        }),
+        getMovieGenres: builder.query<GetMovieGenresResponse, void>({
+            query: () => "/genre/movie/list"
         })
     })
 });
 
 export const {
-    useGetPopularMoviesQuery
+    useGetPopularMoviesQuery,
+    useGetMovieGenresQuery
 } = api;
