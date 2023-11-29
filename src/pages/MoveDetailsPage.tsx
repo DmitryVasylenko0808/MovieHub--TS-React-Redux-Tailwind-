@@ -1,7 +1,12 @@
 import React from "react";
+import MovieDetail from "../components/MovieDetail";
 
 const MoveDetailsPage = () => {
-  return <div>MoveDetailsPage</div>;
+  return (
+    <>
+      <MovieDetail />
+    </>
+  );
 };
 
 export default MoveDetailsPage;
