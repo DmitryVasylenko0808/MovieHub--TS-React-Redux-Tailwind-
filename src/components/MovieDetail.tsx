@@ -5,11 +5,24 @@ import { MOVIES_IMAGES_URL } from "../constants";
 
 import BookMark from "../assets/icons/bookmark.svg";
 import BookMarkFilled from "../assets/icons/bookmark-fill.svg";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { toggleBookMarked } from "../redux/slices/watchListSlice";
 
 const MovieDetail = () => {
   const { id } = useParams();
+  const dispatch = useAppDispatch();
+  const watchList = useAppSelector((state) => state.watchList.data);
 
   const { data, isLoading, isError } = useGetDetailsMovieQuery(id as string);
+
+  const handleToggleBookMarked = () => {
+    if (data) {
+      dispatch(toggleBookMarked(data));
+    }
+  };
+
+  const isBookMarked = watchList.map((m) => m.id).includes(data?.id as number);
+  const bookMarkedClassName = isBookMarked ? "bg-indigo-400" : "";
 
   const releaseYear = data?.release_date.split("-")[0];
   const releaseMonth = data?.release_date.split("-")[1];
@@ -35,9 +48,14 @@ const MovieDetail = () => {
             </div>
             <button
               aria-label="bookmark"
-              className="min-w-[50px] h-[50px] inline-flex justify-center items-center border rounded-full border-indigo-400"
+              className={`min-w-[50px] h-[50px] inline-flex justify-center items-center border rounded-full border-indigo-400 ${bookMarkedClassName}`}
+              onClick={handleToggleBookMarked}
             >
-              <BookMark width={25} height={25} stroke="#818CF8" />
+              {!isBookMarked ? (
+                <BookMark width={25} height={25} stroke="#818CF8" />
+              ) : (
+                <BookMarkFilled width={25} height={25} fill="#FFFFFF" />
+              )}
             </button>
           </div>
           <div className="mb-6 flex gap-x-4">
