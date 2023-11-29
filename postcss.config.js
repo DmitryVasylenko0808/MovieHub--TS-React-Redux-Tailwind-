@@ -1,10 +1,10 @@
-import talwindcss from "tailwindcss";
-import autoprefixer from "autoprefixer";
-import cssnano from "cssnano";
+const tailwindcss = require("tailwindcss");
+const autoprefixer = require("autoprefixer");
+const cssnano = require("cssnano");
 
 module.exports = {
     plugins: [
-        talwindcss,
+        tailwindcss,
         autoprefixer,
         cssnano
     ],
