@@ -1,7 +1,12 @@
 import React from "react";
+import BookMarkedMoviesContainer from "../components/BookMarkedMoviesContainer";
 
 const WatchListPage = () => {
-  return <div>WatchListPage</div>;
+  return (
+    <>
+      <BookMarkedMoviesContainer />
+    </>
+  );
 };
 
 export default WatchListPage;

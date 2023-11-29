@@ -9,6 +9,7 @@ const Layout = () => {
           <Link to="/">
             <h1 className="text-3xl font-bold">MovieHub</h1>
           </Link>
+          <Link to="/watchlist">WatchList</Link>
         </div>
       </header>
       <main>

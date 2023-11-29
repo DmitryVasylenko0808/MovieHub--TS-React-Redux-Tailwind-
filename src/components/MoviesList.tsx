@@ -8,7 +8,7 @@ type MoviesListProps = {
 
 const MoviesList = ({ data }: MoviesListProps) => {
   return (
-    <div className="py-6 flex flex-wrap justify-around gap-y-12">
+    <div className="py-6 flex flex-wrap gap-x-[45px] gap-y-12">
       {data.map((m) => (
         <MovieCard movie={m} key={m.id} />
       ))}
