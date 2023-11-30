@@ -20,6 +20,10 @@ const MoviesContainer = () => {
     setSearchParams({ page });
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [page]);
+
   const isLastPage = parseFloat(page) === data?.total_pages;
   const isFirstPage = parseFloat(page) === 1;
 

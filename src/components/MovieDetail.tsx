@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import { useGetDetailsMovieQuery } from "../redux/services/api";
 import { MOVIES_IMAGES_URL } from "../constants";
@@ -15,7 +15,13 @@ const MovieDetail = () => {
   const dispatch = useAppDispatch();
   const watchList = useAppSelector((state) => state.watchList.data);
 
-  const { data, isLoading, isError } = useGetDetailsMovieQuery(id as string);
+  const { data, isLoading, isFetching, isError } = useGetDetailsMovieQuery(
+    id as string
+  );
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [id]);
 
   const handleToggleBookMarked = () => {
     if (data) {
@@ -25,6 +31,7 @@ const MovieDetail = () => {
 
   const isBookMarked = watchList.map((m) => m.id).includes(data?.id as number);
   const bookMarkedClassName = isBookMarked ? "bg-indigo-400" : "";
+  const fetchingClassName = isFetching ? "py-4 opacity-50" : "py-4";
 
   const releaseYear = data?.release_date.split("-")[0];
   const releaseMonth = data?.release_date.split("-")[1];
@@ -35,7 +42,7 @@ const MovieDetail = () => {
   }
 
   return (
-    <div className="py-4">
+    <div className={fetchingClassName}>
       <div className="flex">
         <img
           src={`${MOVIES_IMAGES_URL}/${data?.poster_path}`}
