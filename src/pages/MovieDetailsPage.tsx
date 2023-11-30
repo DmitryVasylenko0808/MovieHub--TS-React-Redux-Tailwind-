@@ -3,7 +3,7 @@ import MovieDetail from "../components/MovieDetail";
 import MoviesSimilar from "../components/MoviesSimilar";
 import { motion } from "framer-motion";
 
-const MoveDetailsPage = () => {
+const MovieDetailsPage = () => {
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
@@ -16,4 +16,4 @@ const MoveDetailsPage = () => {
   );
 };
 
-export default MoveDetailsPage;
+export default MovieDetailsPage;

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Link, Outlet } from "react-router-dom";
 import NavBar from "../components/NavBar";
+import Loader from "../components/Loader";
 
 const Layout = () => {
   return (
@@ -15,7 +16,9 @@ const Layout = () => {
       </header>
       <main>
         <div className="max-w-[1440px] mx-auto px-3 py-4">
-          <Outlet />
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
         </div>
       </main>
     </>
