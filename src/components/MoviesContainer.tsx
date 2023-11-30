@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Navigate, useSearchParams } from "react-router-dom";
 import { useGetPopularMoviesQuery } from "../redux/services/api";
 import MoviesList from "./MoviesList";
 
@@ -43,6 +43,10 @@ const MoviesContainer = () => {
 
   if (isLoading) {
     return <Loader />;
+  }
+
+  if (isError) {
+    return <Navigate to="*" />;
   }
 
   return (

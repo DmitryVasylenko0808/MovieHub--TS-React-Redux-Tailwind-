@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router";
+import { Navigate, useParams } from "react-router";
 import { useGetDetailsMovieQuery } from "../redux/services/api";
 import { MOVIES_IMAGES_URL } from "../constants";
 
@@ -39,6 +39,10 @@ const MovieDetail = () => {
 
   if (isLoading) {
     return <Loader />;
+  }
+
+  if (isError) {
+    return <Navigate to="*" />;
   }
 
   return (
