@@ -5,6 +5,7 @@ import MoviesList from "./MoviesList";
 
 import ChevronLeft from "../assets/icons/chevron-left.svg";
 import ChevronRight from "../assets/icons/chevron-right.svg";
+import Loader from "./Loader";
 
 const MoviesContainer = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -37,7 +38,7 @@ const MoviesContainer = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (

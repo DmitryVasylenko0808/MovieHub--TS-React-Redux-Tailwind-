@@ -1,12 +1,14 @@
 import React from "react";
 import { Movie } from "../redux/services/types";
 import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { toggleBookMarked } from "../redux/slices/watchListSlice";
+import { motion } from "framer-motion";
+
 import { MOVIES_IMAGES_URL } from "../constants";
 
 import BookMark from "../assets/icons/bookmark.svg";
 import BookMarkFilled from "../assets/icons/bookmark-fill.svg";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { toggleBookMarked } from "../redux/slices/watchListSlice";
 
 type MovieCardProps = {
   movie: Movie;
@@ -35,7 +37,8 @@ const MovieCard = ({ movie }: MovieCardProps) => {
       </Link>
       <div className="mb-3 flex justify-between gap-x-2">
         <h2 className="text-2xl font-bold">{movie.title}</h2>
-        <button
+        <motion.button
+          whileTap={{ scale: 0.1 }}
           aria-label="bookmark"
           className={`min-w-[50px] h-[50px] inline-flex justify-center items-center border rounded-full border-indigo-400 ${bookMarkedClassName}`}
           onClick={handleToggleBookMarked}
@@ -45,7 +48,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
           ) : (
             <BookMarkFilled width={25} height={25} fill="#FFFFFF" />
           )}
-        </button>
+        </motion.button>
       </div>
       <div className="flex flex-wrap gap-3">
         {genresMovie.map((g) => (

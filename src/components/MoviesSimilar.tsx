@@ -8,6 +8,10 @@ const MoviesSimilar = () => {
 
   const { data, isLoading, isError } = useGetSimilarMoviesQuery(id as string);
 
+  if (isLoading) {
+    return null;
+  }
+
   return (
     <div className="py-6">
       <h2 className="mb-6 text-2xl font-bold">Similar Movies</h2>

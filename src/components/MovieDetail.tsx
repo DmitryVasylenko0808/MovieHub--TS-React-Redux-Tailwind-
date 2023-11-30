@@ -7,6 +7,8 @@ import BookMark from "../assets/icons/bookmark.svg";
 import BookMarkFilled from "../assets/icons/bookmark-fill.svg";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { toggleBookMarked } from "../redux/slices/watchListSlice";
+import Loader from "./Loader";
+import { motion } from "framer-motion";
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -29,7 +31,7 @@ const MovieDetail = () => {
   const releaseDay = data?.release_date.split("-")[2];
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (
@@ -46,7 +48,8 @@ const MovieDetail = () => {
               <h2 className="text-2xl font-bold">{data?.title}</h2>
               <span className="text-xl text-neutral-600">({releaseYear})</span>
             </div>
-            <button
+            <motion.button
+              whileTap={{ scale: 0.1 }}
               aria-label="bookmark"
               className={`min-w-[50px] h-[50px] inline-flex justify-center items-center border rounded-full border-indigo-400 ${bookMarkedClassName}`}
               onClick={handleToggleBookMarked}
@@ -56,7 +59,7 @@ const MovieDetail = () => {
               ) : (
                 <BookMarkFilled width={25} height={25} fill="#FFFFFF" />
               )}
-            </button>
+            </motion.button>
           </div>
           <div className="mb-6 flex gap-x-4">
             <span className="text-lg text-neutral-400">
