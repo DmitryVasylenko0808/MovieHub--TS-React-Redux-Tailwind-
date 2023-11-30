@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLazyGetSearchedMoviesQuery } from "../redux/services/api";
 
 import Search from "../assets/icons/search.svg";
 
 const SearchMovies = () => {
+  const [searchValue, setSearchValue] = useState<string>("");
+
   const [getSearchedMovies, { data }] = useLazyGetSearchedMoviesQuery();
 
+  useEffect(() => {
+    const timer = setTimeout(() => getSearchedMovies(searchValue), 500);
+
+    return () => clearTimeout(timer);
+  }, [searchValue]);
+
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    getSearchedMovies(e.target.value);
+    setSearchValue(e.target.value);
   };
 
   return (
